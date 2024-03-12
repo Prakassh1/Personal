@@ -27,7 +27,9 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Sales Invoice" : "thirvu/custom/js/whatsapp_integration.js",
+              "Item" : "thirvu/custom/js/batch_series.js"
+              }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -116,13 +118,14 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Sales Invoice": {
+		"on_submit" : "thirvu.thirvu.custom.py.whatsapp_integration.sales_invoice_in_whatsapp"
+	},
+    "Batch":{
+        "autoname": "thirvu.thirvu.custom.py.item_batch_series.set_batch_number"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
